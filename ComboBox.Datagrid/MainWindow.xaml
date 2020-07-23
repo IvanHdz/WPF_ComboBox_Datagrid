@@ -1,0 +1,41 @@
+﻿<Window
+    x:Class="ComboBox.Datagrid.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:staticData="clr-namespace:ComboBox.Datagrid"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <staticData:StatusList x:Key="StatusList" />
+    </Window.Resources>
+
+    <Grid>
+        <DataGrid x:Name="dgData" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding Subject}"
+                    Header="Subject" />
+                <DataGridTemplateColumn Width="100" Header="Status">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox
+                                Height="22"
+                                ItemsSource="{StaticResource StatusList}"
+                                SelectedItem="{Binding Status}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn
+                    Width="100"
+                    Binding="{Binding RaisedBy}"
+                    Header="Raised By" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
